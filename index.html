@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plantilla de Guiones | Musicala</title>
+
+  <!-- Fuente de marca -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Membrete superior -->
+  <header class="membrete membrete--top" aria-hidden="true">
+    <img src="Membrete superior.png" alt="Membrete superior Musicala">
+  </header>
+
+  <main class="container">
+    <h1 class="app-title">Plantilla de Guiones · Musicala</h1>
+    <p class="app-subtitle">
+      Rellena los campos. Estructura fija: <strong>Gancho</strong> → <strong>Desarrollo (Intro + Pasos 1/2/3)</strong> → <strong>Cierre</strong>.
+      B-roll, Cues y Nota de dirección son opcionales.
+    </p>
+
+    <!-- Barra de acciones -->
+    <section class="toolbar">
+      <button id="btnPrint" class="btn primary">Imprimir PDF</button>
+      <div class="divider"></div>
+      <span class="meta">
+        Duración total: <strong id="totalSeconds">0s</strong> · Δ <span id="deltaSeconds">0s</span>
+      </span>
+    </section>
+
+    <!-- Datos del guion -->
+    <section class="card">
+      <h2 class="card-title">Datos del guion</h2>
+      <div class="grid grid-4">
+        <label class="field">
+          <span>Título del video</span>
+          <input id="titleInput" type="text" placeholder="Ej: Postura básica sin tensión" />
+        </label>
+
+        <label class="field">
+          <span>Tipo de video</span>
+          <select id="kindSelect">
+            <option value="short">Corto (30–60 s)</option>
+            <option value="med">Medio (1–3 min)</option>
+            <option value="long">Largo (3–8 min)</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Duración objetivo (segundos)</span>
+          <input id="targetInput" type="number" min="10" max="600" value="60" />
+        </label>
+
+        <label class="field">
+          <span>Objetivo del video (1 frase)</span>
+          <input id="goalInput" type="text" placeholder="Ej: Enseñar postura correcta para cantar" />
+        </label>
+      </div>
+    </section>
+
+    <!-- Bloques fijos -->
+    <section class="card">
+      <div class="card-head">
+        <h2 class="card-title">Guion (estructura fija)</h2>
+        <div class="time-badge">
+          <span>Total:</span> <strong id="totalSecondsBadge">0s</strong>
+          <span>Δ</span> <strong id="deltaSecondsBadge">0s</strong>
+        </div>
+      </div>
+
+      <div id="blocksList" class="blocks-list"><!-- Render por JS --></div>
+    </section>
+
+    <!-- CTA + Validación -->
+    <section class="card">
+      <div class="grid grid-2">
+        <label class="field">
+          <span>CTA (llamada a la acción)</span>
+          <input id="ctaInput" type="text" value="Si te sirvió, guárdalo y compártelo." />
+          <small class="muted">Ej: “Guárdalo y úsalo antes de tu próxima práctica.”</small>
+        </label>
+
+        <div class="validation">
+          <h3>Chequeo rápido</h3>
+          <ul id="validationList" class="validation-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pestañas: Teleprompter / Markdown / Checklist -->
+    <section class="tabs">
+      <nav class="tabs-nav" role="tablist" aria-label="Vistas">
+        <button class="tab active" data-tab="tele">Teleprompter</button>
+        <button class="tab" data-tab="md">Markdown</button>
+        <button class="tab" data-tab="check">Checklist</button>
+      </nav>
+
+      <!-- Teleprompter -->
+      <section id="tab-tele" class="tab-panel active" role="tabpanel" aria-labelledby="tele">
+        <div class="card">
+          <div class="tele-controls">
+            <label class="field">
+              <span>Tamaño</span>
+              <input id="teleFont" type="number" min="18" max="96" value="42" />
+            </label>
+            <label class="field">
+              <span>Interlineado</span>
+              <input id="teleLine" type="number" step="0.1" min="1" max="2" value="1.4" />
+            </label>
+            <label class="switch">
+              <input id="teleAuto" type="checkbox" />
+              <span>Auto-scroll</span>
+            </label>
+            <label class="field">
+              <span>Velocidad</span>
+              <input id="teleSpeed" type="number" min="10" max="200" value="40" />
+            </label>
+            <div class="tele-buttons">
+              <button id="teleToggle" class="btn primary">Iniciar</button>
+              <button id="teleReset" class="btn">Reiniciar</button>
+            </div>
+          </div>
+
+          <div id="teleViewport" class="tele-viewport">
+            <div id="teleContent" class="tele-content"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Markdown (solo visualización) -->
+      <section id="tab-md" class="tab-panel" role="tabpanel" aria-labelledby="md">
+        <div class="card">
+          <pre id="mdOutput" class="md-output"></pre>
+          <p class="muted small">
+            <strong>Markdown:</strong> formato de texto plano para archivar guiones.
+          </p>
+        </div>
+      </section>
+
+      <!-- Checklist -->
+      <section id="tab-check" class="tab-panel" role="tabpanel" aria-labelledby="check">
+        <div class="card">
+          <h3>Checklist de rodaje</h3>
+          <ul class="checklist">
+            <li><label><input type="checkbox"> Mic lavalier + ambiente (-18 LUFS aprox.)</label></li>
+            <li><label><input type="checkbox"> Plano medio 35–50mm, 24–30fps, 1/50–1/60, luz suave 45°</label></li>
+            <li><label><input type="checkbox"> Subtítulos grandes y palabras clave en overlay</label></li>
+            <li><label><input type="checkbox"> Contador respiración 4–1–6 (si aplica)</label></li>
+            <li><label><input type="checkbox"> Verificar Δ de tiempo</label></li>
+          </ul>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Documento imprimible (se genera por JS y sólo aparece en print) -->
+  <section id="printDoc" aria-hidden="true"></section>
+
+  <!-- Membrete inferior -->
+  <footer class="membrete membrete--bottom" aria-hidden="true">
+    <img src="Membrete inferior.png" alt="Membrete inferior Musicala">
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

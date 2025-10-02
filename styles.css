@@ -1,0 +1,334 @@
+/* ================================
+   Variables · Musicala Brand
+================================ */
+:root{
+  --azul-bach:#220A63;
+  --azul-mozart:#0C41C4;
+  --violeta-beethoven:#680DBF;
+  --magenta-brahms:#CE0071;
+
+  --azul-wagner:#0C0A1E;   /* fondo oscuro */
+  --gris-haydn:#E6E8E8;
+  --blanco-debussy:#F9F9F9;
+
+  --bg:#f7f7f8;
+  --surface:#ffffff;
+  --text:#141414;
+  --muted:#6b7280;
+  --border:#e6e6e9;
+
+  --primary:var(--azul-mozart);
+  --primary-600:#0A36A1;
+  --primary-700:#082B82;
+  --accent:var(--violeta-beethoven);
+
+  --radius-xl:16px;
+  --radius-lg:12px;
+  --radius-md:10px;
+
+  --shadow-1:0 1px 2px rgba(0,0,0,.05),0 6px 20px rgba(0,0,0,.04);
+  --shadow-2:0 6px 28px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Roboto,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%;display:block}
+
+/* ================================
+   Membretes
+================================ */
+.membrete{
+  width:100%;
+  background: var(--surface);
+  border-bottom:1px solid var(--border);
+}
+.membrete--bottom{
+  border-top:1px solid var(--border);
+  border-bottom:none;
+}
+.membrete img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+
+/* ================================
+   Contenedor y títulos
+================================ */
+.container{
+  max-width: 1280px;   /* más ancho */
+  margin: 24px auto 56px;
+  padding: 0 16px;
+}
+.app-title{
+  margin:6px 0;
+  font-size:clamp(22px,4vw,30px);
+  font-weight:800;
+  letter-spacing:-.02em;
+  background:linear-gradient(90deg,var(--azul-mozart),var(--violeta-beethoven));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.app-subtitle{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ================================
+   Toolbar
+================================ */
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:10px 12px;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-1);
+  margin-bottom:18px;
+}
+.meta{color:var(--muted);font-size:14px}
+.divider{width:1px;height:22px;background:var(--border);margin:0 4px}
+
+/* ================================
+   Botones
+================================ */
+.btn{
+  appearance:none;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
+  transition:.15s ease-in-out;
+}
+.btn:hover{box-shadow:var(--shadow-1)}
+.btn:active{transform:translateY(1px)}
+
+.btn.primary{
+  background:linear-gradient(90deg,var(--azul-mozart),var(--violeta-beethoven));
+  color:#fff;
+  border-color:transparent;
+}
+.btn.outline{
+  background:transparent;
+  border-color:var(--border);
+}
+.btn-ghost{
+  appearance:none;
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  padding:6px 8px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.btn-ghost:hover{background:#f0f0f3;color:var(--text)}
+
+/* ================================
+   Tarjetas
+================================ */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-1);
+  padding:16px;
+  margin-bottom:16px;
+}
+.card-title{
+  margin:0 0 10px;
+  font-size:18px;
+  font-weight:800;
+  color:var(--azul-bach);
+}
+.card-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:10px;
+}
+
+/* ================================
+   Grids y campos
+================================ */
+.grid{display:grid;gap:12px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-4{grid-template-columns:1.8fr 1fr 1fr 1fr} /* Texto ocupa más espacio */
+@media (max-width:900px){.grid-4{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.grid-4,.grid-2{grid-template-columns:1fr}}
+
+.field{display:flex;flex-direction:column;gap:6px}
+.field>span{font-size:12px;color:var(--muted)}
+.field input,.field select,.field textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:10px;
+  padding:10px 12px;
+  font-size:14px;
+  color:var(--text);
+  outline:none;
+  transition:.15s ease;
+}
+.field textarea{
+  min-height:140px; /* más alto */
+  line-height:1.5;
+  resize:vertical;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(12,65,196,.15);
+}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+
+/* ================================
+   Bloques
+================================ */
+.blocks-list{display:flex;flex-direction:column;gap:12px}
+.block{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:14px;
+  padding:12px;
+}
+.block-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.block-title{font-weight:800}
+.hint{margin:8px 0 0;color:var(--muted);font-size:12px}
+.time-badge{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+
+/* ================================
+   Validación
+================================ */
+.validation{
+  border:1px dashed var(--border);
+  border-radius:12px;
+  padding:12px;
+  background:var(--blanco-debussy);
+}
+.validation h3{margin:0 0 8px;font-size:16px;font-weight:800}
+.validation-list{margin:0;padding-left:18px;color:var(--muted)}
+.validation-list li+li{margin-top:4px}
+
+/* ================================
+   Tabs
+================================ */
+.tabs{margin-top:6px}
+.tabs-nav{display:flex;gap:8px;margin-bottom:10px}
+.tab{
+  appearance:none;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:8px 14px;
+  font-weight:700;
+  color:var(--text);
+  cursor:pointer;
+}
+.tab.active{
+  background:var(--primary);
+  color:#fff;
+  border-color:transparent;
+}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* ================================
+   Teleprompter
+================================ */
+.tele-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:10px}
+.switch{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.tele-buttons{display:flex;gap:8px}
+.tele-viewport{
+  height:45vh;
+  overflow-y:auto;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--azul-wagner);
+  color:#f5f5f6;
+  box-shadow:var(--shadow-2);
+}
+.tele-content{padding:24px;font-size:42px;line-height:1.4}
+.tele-content h2{margin:0 0 12px;font-size:1em;font-weight:800}
+.tele-content p{margin:0 0 18px}
+
+/* ================================
+   Markdown
+================================ */
+.md-output{
+  width:100%;
+  min-height:220px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:14px;
+  overflow:auto;
+  font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:13px;
+}
+
+/* ================================
+   Checklist
+================================ */
+.checklist{list-style:none;padding:0;margin:8px 0 0}
+.checklist li{
+  padding:8px 10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fff;
+}
+.checklist li+li{margin-top:8px}
+.checklist input[type="checkbox"]{transform:translateY(1px)}
+
+/* ================================
+   Print (con membretes)
+================================ */
+#printDoc{display:none}
+
+/* ====== PRINT: solo lo necesario ====== */
+#printDoc{ display:none }
+
+/* ====== PRINT: sin membretes, solo lo necesario ====== */
+#printDoc{ display:none }
+
+@media print{
+  /* Oculta toda la app/UI y muestra solo el documento limpio */
+  header.membrete, footer.membrete{ display:none !important; }
+  .container{ display:none !important; }
+  #printDoc{ display:block !important; }
+
+  @page{ size: A4; margin: 16mm; }
+
+  .print-wrap{
+    font-family: Roboto, Arial, sans-serif; color:#222;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .print-head{ margin-bottom: 10mm; border-bottom: 2px solid #E6E8E8; padding-bottom: 6mm; }
+  .print-title{ font-size: 22pt; font-weight: 800; margin: 0 0 2mm; color: #220A63; }
+  .print-meta{ font-size: 10pt; color:#555; }
+  .print-section{ margin: 8mm 0; }
+  .print-h2{ font-size: 12pt; font-weight: 800; margin: 0 0 3mm; color: #0C41C4; }
+  .print-table{ width:100%; border-collapse: separate; border-spacing:0; font-size: 10.5pt; }
+  .print-table th, .print-table td{ border:1px solid #ddd; padding:6px 8px; vertical-align: top; }
+  .print-table th{ background: #f5f7ff; font-weight: 800; }
+  .print-section, .print-table, .print-table tr, .print-h2{
+    break-inside: avoid; page-break-inside: avoid;
+  }
+}
